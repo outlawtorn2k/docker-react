@@ -8,3 +8,15 @@ before_install:
   
 script:
   - docker run -e CI=true outlawtorn/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "Dockerreact"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-544055515059"
+  bucket_path: "Dockerreact"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
